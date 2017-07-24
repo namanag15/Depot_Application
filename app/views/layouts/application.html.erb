@@ -13,9 +13,11 @@
 </div>
 <div id="columns">
 <div id="side">
-	<div id="cart">
-       <%= render @cart %>
-    </div>
+	<% if @cart %>
+<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+<%= render @cart %>
+<% end %>
+ <% end %>
 <p>You visited this page <%= pluralize session[:counter], 'time' %></p>
 <p id='dis'><%= Time.now %></p>
 <ul>
